@@ -19,4 +19,24 @@ class RumahSakitController extends CI_Controller
         $this->load->view('RumahSakit/index', $data);
         $this->load->view('templates/footer');
     }
+	
+    public function create()
+    {
+        $this->form_validation->set_rules('nama','nama','required');
+        $this->form_validation->set_rules('alamat','alamat','required');
+        $this->form_validation->set_rules('notelp','notelp','required');
+
+        if ($this->form_validation->run() == FALSE) {
+            $data['judul'] = 'Rumah Sakit';
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('RumahSakit/create');
+            $this->load->view('templates/footer');
+        } else {
+            $this->RumahSakitModel->addRumahSakit();
+            // load rscon
+            redirect('RumahSakitController');
+        }
+
+    }
 }
