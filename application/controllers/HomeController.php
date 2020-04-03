@@ -13,7 +13,7 @@ class HomeController extends CI_Controller
     public function index()
     {
         $data['judul'] = 'Home';
-        $data['user'] = $this->session->flashdata('user');
+        $data['user'] = $this->session->userdata('user');
 
         $this->load->view('templates/header', $data);
         $this->load->view('Home', $data);
