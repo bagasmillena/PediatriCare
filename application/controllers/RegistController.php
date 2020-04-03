@@ -40,8 +40,8 @@ class RegistController extends CI_Controller
             //redirect('registcontroller');
 
             // panggil fungsi getUserByUsername dan simpan di variabel
-            $this->load->library('session');
-            $this->session->set_flashdata('user', $this->AccountModel->getAccountByUsername($this->input->post('username', true)));
+            $user = $this->AccountModel->getAccountByUsername($this->input->post('username', true));
+            $this->session->set_userdata('user',$user);
             //$data['user'] = $this->AccountModel->getUserByUsername($this->input->post('username', true));
             //print_r($data['user']);
             // load home
